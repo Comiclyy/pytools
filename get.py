@@ -21,14 +21,9 @@ while True:
         print(f"Request status: {response.status_code}")
         return response.json()
 
-    def write_response_to_file(response_json):
-        with open('getresponses.txt', 'a') as file:
-            file.write(json.dumps(response_json))
-            file.write('\n')
-
     threads = []
     for i in range(num_threads):
-        thread = threading.Thread(target=write_response_to_file, args=(send_request(),))
+        thread = threading.Thread(target=send_request)
         threads.append(thread)
         thread.start()
 
