@@ -18,20 +18,17 @@ while True:
         if not url.startswith("https://"):
             url = "https://" + url
             
-    num_requests = int(input("Enter the number of requests you want to send: "))
+    num_requests = int(input("Enter the number of friends you want to send: "))
     num_threads = int(input("Enter the number of threads you want to use: "))
 
     use_random_data = input("Use random data? (yes/no)")
     if use_random_data.lower() == 'yes':
         data_length = int(input("Enter the number of characters for the random data: "))
+        data = 'comicly' + ''.join(random.choices(string.ascii_letters + string.digits, k=data_length))
     else:
         data = input("Enter the data you want to send: ")
     
     def send_request(idx):
-        if use_random_data.lower() == 'yes':
-            data = 'comicly' + ''.join(random.choices(string.ascii_letters + string.digits, k=data_length))
-        else:
-            data = data
         payload = {"data": data}
         headers = {}
 
