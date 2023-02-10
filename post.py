@@ -5,7 +5,8 @@ import threading
 
 def send_post_request(url, data):
     print("Sending POST request with data:", data)
-    requests.post(url, data=data)
+    response = requests.post(url, data=data)
+    print("Status code:", response.status_code)
 
 while True:
     url = input("Enter the URL to send the POST requests to: ")

@@ -1,10 +1,12 @@
 import requests
 import json
 import threading
+import random
+import string
+
+use_default_url = "no"
 
 while True:
-    use_default_url = input("Do you want to use the default URL (yes/no)? ")
-
     if use_default_url.lower() == 'yes':
         url = "https://10e2e771-9e34-46b0-808b-25ed04bf8973.mock.pstmn.io/getpy"
     else:
@@ -13,17 +15,18 @@ while True:
     num_requests = int(input("Enter the number of requests you want to send: "))
     num_threads = int(input("Enter the number of threads you want to use: "))
 
-    def send_request():
-        payload = ""
+    def send_request(idx):
+        data = 'apple' + ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        payload = {"data": data}
         headers = {}
 
-        response = requests.request("GET", url, headers=headers, data=payload)
-        print(f"Request status: {response.status_code}")
+        response = requests.request("GET", url, headers=headers, params=payload)
+        print(f"Request {idx} status: {response.status_code} {data}")
         return response.json()
 
     threads = []
-    for i in range(num_threads):
-        thread = threading.Thread(target=send_request)
+    for i in range(num_requests):
+        thread = threading.Thread(target=send_request, args=(i,))
         threads.append(thread)
         thread.start()
 
