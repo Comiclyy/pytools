@@ -7,6 +7,9 @@ import string
 use_default_url = "no"
 
 while True:
+
+    use_default_url = input("Default url? (yes/no)")
+
     if use_default_url.lower() == 'yes':
         url = "https://10e2e771-9e34-46b0-808b-25ed04bf8973.mock.pstmn.io/getpy"
     else:
@@ -21,6 +24,8 @@ while True:
         headers = {}
 
         response = requests.request("GET", url, headers=headers, params=payload)
+        with open('responses.txt', 'a') as file:
+            file.write(str(response.json()))
         print(f"Request {idx} status: {response.status_code} {data}")
         return response.json()
 
