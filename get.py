@@ -15,7 +15,6 @@ while True:
     else:
         url = input("Enter the URL you want to send a GET request to: ")
 
-<<<<<<< HEAD
         if not url.startswith("https://"):
             url = "https://" + url
             
@@ -30,13 +29,6 @@ while True:
         data = input("Enter the data you want to send: ")
     
     def send_request(idx):
-=======
-    num_requests = int(input("Enter the number of requests you want to send: "))
-    num_threads = int(input("Enter the number of threads you want to use: "))
-
-    def send_request(idx):
-        data = 'apple' + ''.join(random.choices(string.ascii_letters + string.digits, k=10))
->>>>>>> f9faa03516b98dd172dda033822e36a940a52140
         payload = {"data": data}
         headers = {}
 
