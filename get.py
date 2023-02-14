@@ -26,7 +26,13 @@ while True:
         response = requests.request("GET", url, headers=headers, params=payload)
         with open('responses.txt', 'a') as file:
             file.write(str(response.json()))
-        print(f"Request {idx} status: {response.status_code} {data}")
+
+        if response.status_code == 200:
+            print(f"\033[32mRequest sent with status: {response.status_code} {data}\033[0m")
+        elif response.status_code == 500:
+            print(f"\033[33mRequest sent with status: {response.status_code} {data}\033[0m")
+        else:
+            print(f"\033[31mRequest sent with status: {response.status_code} {data}\033[0m")
         return response.json()
 
     threads = []

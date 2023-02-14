@@ -6,7 +6,13 @@ import threading
 def send_post_request(url, data):
     print("Sending POST request with data:", data)
     response = requests.post(url, data=data)
-    print("Status code:", response.status_code)
+    status_code = response.status_code
+    if status_code == 200:
+        print("\033[32mStatus code:", status_code, "\033[0m")
+    elif status_code == 500:
+        print("\033[33mStatus code:", status_code, "\033[0m")
+    else:
+        print("\033[31mStatus code:", status_code, "\033[0m")
 
 while True:
     url = input("Enter the URL to send the POST requests to: ")
