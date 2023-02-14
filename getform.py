@@ -15,7 +15,6 @@ while True:
     else:
         url = input("Enter the URL you want to send a GET request to: ")
 
-<<<<<<< HEAD
         if not url.startswith("https://"):
             url = "https://" + url
             
@@ -30,27 +29,18 @@ while True:
         data = input("Enter the data you want to send: ")
     
     def send_request(idx):
-=======
-    num_requests = int(input("Enter the number of requests you want to send: "))
-    num_threads = int(input("Enter the number of threads you want to use: "))
-
-    def send_request(idx):
-        data = 'apple' + ''.join(random.choices(string.ascii_letters + string.digits, k=10))
->>>>>>> f9faa03516b98dd172dda033822e36a940a52140
         payload = {"data": data}
         headers = {}
 
         response = requests.request("GET", url, headers=headers, params=payload)
-        with open('responses.txt', 'a') as file:
-            file.write(str(response.json()))
+        try:
+            response_json = response.json()
+        except ValueError as e:
+            response_json = {}
+            print(f"Request {idx} error: {e}")
 
-        if response.status_code == 200:
-            print(f"\033[32mRequest sent with status: {response.status_code} {data}\033[0m")
-        elif response.status_code == 500:
-            print(f"\033[33mRequest sent with status: {response.status_code} {data}\033[0m")
-        else:
-            print(f"\033[31mRequest sent with status: {response.status_code} {data}\033[0m")
-        return response.json()
+        print(f"Request {idx} status: {response.status_code} {data} sent to {url}")
+        return response_json
 
     threads = []
     for i in range(num_requests):
