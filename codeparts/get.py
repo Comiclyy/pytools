@@ -33,7 +33,7 @@ while True:
         headers = {}
 
         response = requests.request("GET", url, headers=headers, params=payload)
-        with open('responses.txt', 'a') as file:
+        with open('data/responses.txt', 'a') as file:
             file.write(str(response.json()))
 
         if response.status_code == 200:

@@ -9,18 +9,18 @@ set /p startpro=
 
 if "%startpro%" == "getpy" (
     echo starting get.py...
-    start C:\Users\comic\Documents\GitHub\requestspammer\codeparts\get.py
+    start codeparts\get.py
     goto begin
 )
 
 if "%startpro%" == "postpy" (
     echo starting post.py...
-    start C:\Users\comic\Documents\GitHub\requestspammer\codeparts\post.py
+    start codeparts\post.py
     goto begin
 )
 
 if "%startpro%" == "signuppy" (
     echo starting signup.py...
-    start C:\Users\comic\Documents\GitHub\requestspammer\codeparts\signup.py
+    start codeparts\signup.py
     goto begin
 )
