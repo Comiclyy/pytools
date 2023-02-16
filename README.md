@@ -1,4 +1,4 @@
-# requestspammer
+# pytools
 
 A simple yet useful python collection of programs.
 
