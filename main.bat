@@ -24,3 +24,5 @@ if "%startpro%" == "signuppy" (
     start codeparts\signup.py
     goto begin
 )
+
+echo Invalid program try again later.

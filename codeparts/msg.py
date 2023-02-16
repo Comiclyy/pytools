@@ -11,3 +11,5 @@ def send_message():
 
     for thread in threads:
         thread.join()
+
+send_message()
