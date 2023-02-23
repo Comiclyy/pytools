@@ -3,6 +3,18 @@ import json
 import threading
 import random
 import string
+import time
+
+
+def measure_time(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"\033[34mTime taken: {round(end_time - start_time, 9)} seconds\033[0m")
+        return result
+    return wrapper
+
 
 use_default_url = "no"
 
@@ -28,6 +40,7 @@ while True:
     else:
         data = input("Enter the data you want to send: ")
     
+    @measure_time
     def send_request(idx):
         payload = {"data": data}
         headers = {}
@@ -37,11 +50,11 @@ while True:
             file.write(str(response.json()))
 
         if response.status_code == 200:
-            print(f"\033[32mRequest sent with status: {response.status_code} {data}\033[0m")
+            print(f"\033[32mRequest sent with status: {response.status_code} {data}\033[0m", end=" ")
         elif response.status_code == 500:
-            print(f"\033[33mRequest sent with status: {response.status_code} {data}\033[0m")
+            print(f"\033[33mRequest sent with status: {response.status_code} {data}\033[0m", end=" ")
         else:
-            print(f"\033[31mRequest sent with status: {response.status_code} {data}\033[0m")
+            print(f"\033[31mRequest sent with status: {response.status_code} {data}\033[0m", end=" ")
         return response.json()
 
     threads = []
