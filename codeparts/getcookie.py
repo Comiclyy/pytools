@@ -5,6 +5,7 @@ import hashlib
 import platform
 import uuid
 import socket
+import datetime
 
 # Get the HWID
 hwid = str(uuid.getnode())
@@ -15,7 +16,7 @@ ip = socket.gethostbyname(socket.gethostname())
 while True:
     def algorithm():
         print("Baking cookie and putting it in the oven...")
-        unhashed_cookie = 'c' + hwid + ip + ''.join(random.choices(string.ascii_letters + string.digits, k=21))
+        unhashed_cookie = 'c' + ''.join(random.choices(string.ascii_letters + string.digits, k=21))
         hash_object = hashlib.sha256(unhashed_cookie.encode())
         hashed_cookie = hash_object.hexdigest()
         print("Cookie finished baking!")
