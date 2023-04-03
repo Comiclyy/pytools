@@ -1,4 +1,5 @@
 import hashlib
+import random
 
 # Prompt the user for input
 user_input = input("Enter a string to hash: ")
